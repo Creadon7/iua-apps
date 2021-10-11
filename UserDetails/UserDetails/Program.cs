@@ -16,11 +16,10 @@ namespace UserDetails
             while (!userFirstNameCorrect)
             {
                 string userFirstName = Console.ReadLine();
-                Regex regx = new Regex(@"^[a-zA-Z ]+$");
+                Regex regx = new Regex(@"^(?!\s)[a-zA-Z ]+$");
                 if (!regx.IsMatch(userFirstName) || userFirstName.Length < 3 || userFirstName.Length > 20)
                 {
                     Console.WriteLine("Your first name must be between 3-20 characters and can only contain letters and spaces. Please try again.");
-
                 }
                 else if (regx.IsMatch(userFirstName) && userFirstName.Length >= 3 && userFirstName.Length <= 20)
                 {
@@ -30,7 +29,6 @@ namespace UserDetails
                 else
                 {
                     Console.WriteLine("We didn't understand. Please try again.");
-
                 }
             }
             Console.WriteLine("What is your last name?");
@@ -38,11 +36,10 @@ namespace UserDetails
             while (!userLastNameCorrect)
             {
                 string userLastName = Console.ReadLine();
-                Regex regx = new Regex(@"^[a-zA-Z ]+$");
+                Regex regx = new Regex(@"^(?!\s)[a-zA-Z ]+$");
                 if (!regx.IsMatch(userLastName) || userLastName.Length < 3 || userLastName.Length > 20)
                 {
                     Console.WriteLine("Your last name must be between 3-20 characters and can only contain letters and spaces. Please try again.");
-
                 }
                 else if (regx.IsMatch(userLastName) && userLastName.Length >= 3 && userLastName.Length <= 20)
                 {
@@ -52,7 +49,26 @@ namespace UserDetails
                 else
                 {
                     Console.WriteLine("We didn't understand. Please try again.");
-
+                }
+            }
+            Console.WriteLine("What is your ID number?");
+            bool userIdNumberCorrect = false;
+            while (!userIdNumberCorrect)
+            {
+                string userIdNumber = Console.ReadLine();
+                Regex regx = new Regex(@"^[0-9]+$");
+                if (!regx.IsMatch(userIdNumber) || userIdNumber.Length != 13)
+                {
+                    Console.WriteLine("Your ID number must be 13 characters and can only contain numbers. Please try again.");
+                }
+                else if (regx.IsMatch(userIdNumber) && userIdNumber.Length == 13)
+                {
+                    Console.WriteLine(userIdNumber);
+                    userIdNumberCorrect = true;
+                }
+                else
+                {
+                    Console.WriteLine("We didn't understand. Please try again.");
                 }
             }
         }
