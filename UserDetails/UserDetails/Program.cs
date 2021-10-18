@@ -17,7 +17,13 @@ namespace UserDetails
             {
                 string userFirstName = Console.ReadLine();
                 Regex regx = new Regex(@"^(?!\s)[a-zA-Z ]+$");
-                if (!regx.IsMatch(userFirstName) || userFirstName.Length < 3 || userFirstName.Length > 20)
+                if (userFirstName.ToUpper().Equals("QUIT"))
+                {
+                    Console.WriteLine("Thanks for typing ‘QUIT’, exiting!");
+                    System.Threading.Thread.Sleep(3000);
+                    return;
+                }
+                else if (!regx.IsMatch(userFirstName) || userFirstName.Length < 3 || userFirstName.Length > 20)
                 {
                     Console.WriteLine("Your first name must be between 3-20 characters and can only contain letters and spaces. Please try again.");
                 }
@@ -37,7 +43,13 @@ namespace UserDetails
             {
                 string userLastName = Console.ReadLine();
                 Regex regx = new Regex(@"^(?!\s)[a-zA-Z ]+$");
-                if (!regx.IsMatch(userLastName) || userLastName.Length < 3 || userLastName.Length > 20)
+                if (userLastName.ToUpper().Equals("QUIT"))
+                {
+                    Console.WriteLine("Thanks for typing ‘QUIT’, exiting!");
+                    System.Threading.Thread.Sleep(3000);
+                    return;
+                }
+                else if(!regx.IsMatch(userLastName) || userLastName.Length < 3 || userLastName.Length > 20)
                 {
                     Console.WriteLine("Your last name must be between 3-20 characters and can only contain letters and spaces. Please try again.");
                 }
@@ -57,7 +69,13 @@ namespace UserDetails
             {
                 string userIdNumber = Console.ReadLine();
                 Regex regx = new Regex(@"^[0-9]+$");
-                if (!regx.IsMatch(userIdNumber) || userIdNumber.Length != 13)
+                if (userIdNumber.ToUpper().Equals("QUIT"))
+                {
+                    Console.WriteLine("Thanks for typing ‘QUIT’, exiting!");
+                    System.Threading.Thread.Sleep(3000);
+                    return;
+                }
+                else if (!regx.IsMatch(userIdNumber) || userIdNumber.Length != 13)
                 {
                     Console.WriteLine("Your ID number must be 13 characters and can only contain numbers. Please try again.");
                 }
