@@ -1,17 +1,22 @@
 ﻿using System;
+using System.IO;
 using System.Text.RegularExpressions;
 
 namespace UserDetails
 {
     class Program
     {
+        private static string userFirstName;
+        private static string userLastName;
+        private static string userIdNumber;
+
         static void Main(string[] args)
         {
             Console.WriteLine("What is your first name?");
             bool userFirstNameCorrect = false;
             while (!userFirstNameCorrect)
             {
-                string userFirstName = Console.ReadLine();
+                userFirstName = Console.ReadLine();
                 Regex regx = new Regex(@"^(?!\s)[a-zA-Z ]+$");
                 if (userFirstName.ToUpper().Equals("QUIT"))
                 {
@@ -37,7 +42,7 @@ namespace UserDetails
             bool userLastNameCorrect = false;
             while (!userLastNameCorrect)
             {
-                string userLastName = Console.ReadLine();
+                userLastName = Console.ReadLine();
                 Regex regx = new Regex(@"^(?!\s)[a-zA-Z ]+$");
                 if (userLastName.ToUpper().Equals("QUIT"))
                 {
@@ -63,7 +68,7 @@ namespace UserDetails
             bool userIdNumberCorrect = false;
             while (!userIdNumberCorrect)
             {
-                string userIdNumber = Console.ReadLine();
+                userIdNumber = Console.ReadLine();
                 Regex regx = new Regex(@"^[0-9]+$");
                 if (userIdNumber.ToUpper().Equals("QUIT"))
                 {
@@ -84,6 +89,16 @@ namespace UserDetails
                 {
                     Console.WriteLine("We didn't understand. Please try again.");
                 }
+            }
+
+            using (var fileStream = new FileStream(Path.GetFileNameWithoutExtension(Path.GetRandomFileName())+".txt", FileMode.Create))
+
+            using (var streamWriter = new StreamWriter(fileStream))
+            {
+                streamWriter.WriteLine("User ID: " + new Random().Next(10000, 99999));
+                streamWriter.WriteLine("First Name: " + userFirstName);
+                streamWriter.WriteLine("Last Name: " + userLastName);
+                streamWriter.WriteLine("Date of Birth: " );
             }
         }
     }
