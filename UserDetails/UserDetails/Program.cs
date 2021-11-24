@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace UserDetails
 {
@@ -12,16 +13,16 @@ namespace UserDetails
 
         static void Main(string[] args)
         {
-            Console.WriteLine("What is your first name?");
-            bool userFirstNameCorrect = false;
+            Console.WriteLine("Please type in your first name and press ENTER?");
+            var userFirstNameCorrect = false;
             while (!userFirstNameCorrect)
             {
                 userFirstName = Console.ReadLine();
-                Regex regx = new Regex(@"^(?!\s)[a-zA-Z ]+$");
+                var regx = new Regex(@"^(?!\s)[a-zA-Z ]+$");
                 if (userFirstName.ToUpper().Equals("QUIT"))
                 {
                     Console.WriteLine("Thanks for typing ‘QUIT’, exiting!");
-                    System.Threading.Thread.Sleep(3000);
+                    Thread.Sleep(3000);
                     return;
                 }
                 else if (!regx.IsMatch(userFirstName) || userFirstName.Length < 3 || userFirstName.Length > 20)
@@ -30,7 +31,6 @@ namespace UserDetails
                 }
                 else if (regx.IsMatch(userFirstName) && userFirstName.Length >= 3 && userFirstName.Length <= 20)
                 {
-                    Console.WriteLine(userFirstName);
                     userFirstNameCorrect = true;
                 }
                 else
@@ -38,16 +38,16 @@ namespace UserDetails
                     Console.WriteLine("We didn't understand. Please try again.");
                 }
             }
-            Console.WriteLine("What is your last name?");
-            bool userLastNameCorrect = false;
+            Console.WriteLine("Please type in your last name and press ENTER?");
+            var userLastNameCorrect = false;
             while (!userLastNameCorrect)
             {
                 userLastName = Console.ReadLine();
-                Regex regx = new Regex(@"^(?!\s)[a-zA-Z ]+$");
+                var regx = new Regex(@"^(?!\s)[a-zA-Z ]+$");
                 if (userLastName.ToUpper().Equals("QUIT"))
                 {
                     Console.WriteLine("Thanks for typing ‘QUIT’, exiting!");
-                    System.Threading.Thread.Sleep(3000);
+                    Thread.Sleep(3000);
                     return;
                 }
                 else if(!regx.IsMatch(userLastName) || userLastName.Length < 3 || userLastName.Length > 20)
@@ -56,7 +56,6 @@ namespace UserDetails
                 }
                 else if (regx.IsMatch(userLastName) && userLastName.Length >= 3 && userLastName.Length <= 20)
                 {
-                    Console.WriteLine(userLastName);
                     userLastNameCorrect = true;
                 }
                 else
@@ -64,16 +63,16 @@ namespace UserDetails
                     Console.WriteLine("We didn't understand. Please try again.");
                 }
             }
-            Console.WriteLine("What is your ID number?");
-            bool userIdNumberCorrect = false;
+            Console.WriteLine("Please type in your ID number and press ENTER?");
+            var userIdNumberCorrect = false;
             while (!userIdNumberCorrect)
             {
                 userIdNumber = Console.ReadLine();
-                Regex regx = new Regex(@"^[0-9]+$");
+                var regx = new Regex(@"^[0-9]+$");
                 if (userIdNumber.ToUpper().Equals("QUIT"))
                 {
                     Console.WriteLine("Thanks for typing ‘QUIT’, exiting!");
-                    System.Threading.Thread.Sleep(3000);
+                    Thread.Sleep(3000);
                     return;
                 }
                 else if (!regx.IsMatch(userIdNumber) || userIdNumber.Length != 13)
@@ -82,7 +81,6 @@ namespace UserDetails
                 }
                 else if (regx.IsMatch(userIdNumber) && userIdNumber.Length == 13)
                 {
-                    Console.WriteLine(userIdNumber);
                     userIdNumberCorrect = true;
                 }
                 else
